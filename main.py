@@ -50,6 +50,17 @@ def update():
     except KeyError:
         return create(unique_id)
 
+@app.route("/routes/")
+def routes():
+    return """
+Routes: <br>
+/items/?UID - Get item by UID <br>
+/update/?UID - Update item to 'paid' by UID <br>
+/routes/ - Get routes <br>
+/nuke/?UID&user&pass - Nuke item by UID <br>
+/ - get all item data
+"""
+
 @app.route("/nuke/")
 def nuke():
     user = request.args.get('user')
@@ -75,4 +86,4 @@ def nuke():
         return "Invalid user"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0",port=8080)
